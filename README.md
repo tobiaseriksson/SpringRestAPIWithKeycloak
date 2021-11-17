@@ -1,2 +1,2 @@
-# SpringRestAPIWithKeycloak
-Spring based Rest API with Keycloak integration
+# SpringRestAPI
+Just demo how you would do a simple Spring based API
