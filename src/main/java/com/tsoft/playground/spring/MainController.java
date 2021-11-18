@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +37,7 @@ public class MainController {
      * @return
      */
     @GetMapping(value = "/api/names")
-    public List<String> list() {
+    public List<String> names() {
         return names.all().stream().limit(15).collect(Collectors.toList());
     }
 
@@ -50,4 +51,12 @@ public class MainController {
     public String specificName(@PathVariable("id") Long id) {
         return names.byIndex(id);
     }
+
+    @GetMapping(path="/api/message")
+    public Message message(Principal principal ) {
+        System.out.println("User: "+principal.getName() );
+        Message msg = new Message( "Welcome "+principal.getName() );
+        return msg;
+    }
+
 }
